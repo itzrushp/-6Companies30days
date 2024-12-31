@@ -70,3 +70,23 @@ int main() {
 
     return 0;
 }
+
+/* Most optimisation that can be done here is : inplace like we dont need extra space 
+
+Ofc it is hard to think , as if  I do make the changes inplace then the next time ,when i calculate the sum it'll be the updated value 
+
+So we can use BITMANIPULATION !!! 
+so in the given contraint -  0 <= img[i][j] <= 255
+means 255 = 2^8 -1 
+so we can store each number in the cell in 32 bits 
+What we will do is , we will short two result and the previous number in the same cell using bits 
+
+Encoding:
+We store the new value (smoothed value) in the higher bits of the cell while keeping the original value in the lower bits.
+
+Decoding:
+After the entire smoothing process, we extract the new value from the higher bits and discard the original value
+
+Reaf image_smoother.md for detailed explaination 
+
+*/
