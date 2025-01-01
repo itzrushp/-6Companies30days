@@ -1,4 +1,43 @@
 # In-Place Image Smoothing with Encoding and Decoding
+```
+class Solution {
+public:
+    vector<vector<int>> imageSmoother(vector<vector<int>>& img) {
+        int m = img.size(), n = img[0].size();
+
+        // Step 1: Encode new values in the same matrix
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int sum = 0, count = 0;
+
+                // Iterate over the 3x3 grid centered at (i, j)
+                for (int r = i - 1; r <= i + 1; r++) {
+                    for (int c = j - 1; c <= j + 1; c++) {
+                        // Check if the cell (r, c) is within bounds
+                        if (r >= 0 && r < m && c >= 0 && c < n) {
+                            sum += (img[r][c] & 0xFF); // Extract original value
+                            count++;
+                        }
+                    }
+                }
+
+                int newVal = sum / count;            // Compute the smoothed value
+                img[i][j] |= (newVal << 8);          // Encode the new value in the higher bits
+            }
+        }
+
+        // Step 2: Decode the final results
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                img[i][j] = (img[i][j] >> 8);        // Extract the new value
+            }
+        }
+
+        return img;
+    }
+};
+
+```
 
 ## Overview
 To perform image smoothing **in-place**, we need to modify the matrix directly without using extra space. This is achieved by encoding both the **original value** and the **smoothed value** in the same cell using bitwise operations.
