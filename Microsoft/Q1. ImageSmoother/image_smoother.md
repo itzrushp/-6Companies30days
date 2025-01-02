@@ -1,5 +1,5 @@
 # In-Place Image Smoothing with Encoding and Decoding
-```
+```cpp
 class Solution {
 public:
     vector<vector<int>> imageSmoother(vector<vector<int>>& img) {
