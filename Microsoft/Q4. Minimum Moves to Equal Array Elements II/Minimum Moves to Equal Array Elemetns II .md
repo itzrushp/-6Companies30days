@@ -36,6 +36,26 @@ The goal is to make all elements equal with the minimum number of moves. The key
 2. **Finding the Number of Moves:**
    - After sorting, we iterate through the array and calculate the total number of moves needed to convert each element to the median. The median is the element in the middle of the sorted array.
 
+```cpp 
+   class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+
+        int ans =0;
+        int i =0 ;
+        int j = nums.size()-1;
+
+        while( i < j ){
+           ans+= abs(nums[i]-nums[j]) ;
+           i++;j--;
+        }
+
+        return ans;
+    }
+};
+```
+
 ### Time Complexity:
 - **Sorting the array:** O(n log n), where `n` is the size of the array.
 - **Summing the absolute differences:** O(n), where `n` is the size of the array.
@@ -54,3 +74,5 @@ Thus, the total number of moves is `1 + 1 = 2`.
 
 ### Summary:
 - The key insight is that the median minimizes the total number of moves required to make all elements equal. By sorting the array and calculating the total number of moves to the median, we can solve the problem efficiently.
+
+
